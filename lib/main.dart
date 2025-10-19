@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       theme: Provider.of<ThemeProvider>(context).themeData,
-      home: LoginPage(),
+      home: LoginPage(onTap: () {}),
     );
   }
 }
