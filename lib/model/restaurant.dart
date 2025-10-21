@@ -12,7 +12,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/burgers/whopper.png",
       price: 9.80,
       category: FoodCategory.burgers,
-      availableAddon: [
+      availableAddons: [
         Addon(name: "Soda", price: 1.00),
         Addon(name: "Extra Fries", price: 1.00),
       ],
@@ -23,7 +23,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/burgers/rebel_whopper.png",
       price: 10.70,
       category: FoodCategory.burgers,
-      availableAddon: [
+      availableAddons: [
         Addon(name: "Soda", price: 1.00),
         Addon(name: "Extra Fries", price: 1.00),
       ],
@@ -35,7 +35,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/burgers/whopper_jr.png",
       price: 7.40,
       category: FoodCategory.burgers,
-      availableAddon: [
+      availableAddons: [
         Addon(name: "Soda", price: 1.00),
         Addon(name: "Extra Fries", price: 1.00),
       ],
@@ -47,7 +47,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/burgers/double_cheese_bacon.png",
       price: 9.80,
       category: FoodCategory.burgers,
-      availableAddon: [
+      availableAddons: [
         Addon(name: "Soda", price: 1.00),
         Addon(name: "Extra Fries", price: 1.00),
       ],
@@ -60,7 +60,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/salads/crunchy_chicken_salad.png",
       price: 8.00,
       category: FoodCategory.salads,
-      availableAddon: [Addon(name: "Water", price: 1.00)],
+      availableAddons: [Addon(name: "Water", price: 1.00)],
     ),
     Food(
       name: "Delight Salad",
@@ -69,7 +69,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/salads/delight_salad.png",
       price: 8.00,
       category: FoodCategory.salads,
-      availableAddon: [Addon(name: "Water", price: 1.00)],
+      availableAddons: [Addon(name: "Water", price: 1.00)],
     ),
     //sides
     Food(
@@ -79,7 +79,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/sides/king_onion_rings.png",
       price: 3.20,
       category: FoodCategory.sides,
-      availableAddon: [Addon(name: "Water", price: 1.00)],
+      availableAddons: [Addon(name: "Water", price: 1.00)],
     ),
     //desserts
     Food(
@@ -89,7 +89,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/desserts/chocolate-donut.png",
       price: 2.00,
       category: FoodCategory.desserts,
-      availableAddon: [Addon(name: "Water", price: 1.00)],
+      availableAddons: [Addon(name: "Water", price: 1.00)],
     ),
     Food(
       name: "King Fusion",
@@ -98,7 +98,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/desserts/desserts_kitkat_oreo.png",
       price: 4.00,
       category: FoodCategory.desserts,
-      availableAddon: [Addon(name: "Water", price: 1.00)],
+      availableAddons: [Addon(name: "Water", price: 1.00)],
     ),
 
     //drinks
@@ -109,6 +109,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/drinks/milkshakes.png",
       price: 4.00,
       category: FoodCategory.drinks,
+      availableAddons: [Addon(name: "Water", price: 1.00)],
     ),
     Food(
       name: "Sodas",
@@ -116,6 +117,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/drinks/sodas.png",
       price: 1.50,
       category: FoodCategory.drinks,
+      availableAddons: [Addon(name: "Water", price: 1.00)],
     ),
     Food(
       name: "Water",
@@ -123,6 +125,7 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/drinks/water.png",
       price: 1.00,
       category: FoodCategory.drinks,
+      availableAddons: [Addon(name: "Water", price: 1.00)],
     ),
   ];
   /*
