@@ -1,6 +1,7 @@
+import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/model/food.dart';
 
-class Restaurant {
+class Restaurant extends ChangeNotifier {
   //List of food menu
   final List<Food> _menu = [
     //burgers
@@ -56,7 +57,7 @@ class Restaurant {
       name: "Crunchy Chicken Salad",
       description:
           "Something light on the tummy but super packed with great nutrients. Come enjoy a bowl of Crunchy Chicken Salad with special sauce!",
-      imagePath: "lib/images/burgers/crunchy_chiken_salad.png",
+      imagePath: "lib/images/salads/crunchy_chicken_salad.png",
       price: 8.00,
       category: FoodCategory.salads,
       availableAddon: [Addon(name: "Water", price: 1.00)],
@@ -65,7 +66,7 @@ class Restaurant {
       name: "Delight Salad",
       description:
           "Something light on the tummy but super packed with great nutrients. Come enjoy a bowl of Delight Salad with special sauce!",
-      imagePath: "lib/images/burgers/delight_salad.png",
+      imagePath: "lib/images/salads/delight_salad.png",
       price: 8.00,
       category: FoodCategory.salads,
       availableAddon: [Addon(name: "Water", price: 1.00)],
@@ -75,7 +76,7 @@ class Restaurant {
       name: "Chilli Cheese Bites",
       description:
           "Crispy coat with smooth and spicy cheese inside. Unique taste of chilli with every bite. You will love our Chilli Cheese Bites!",
-      imagePath: "lib/images/burgers/king_onion_rings.png",
+      imagePath: "lib/images/sides/king_onion_rings.png",
       price: 3.20,
       category: FoodCategory.sides,
       availableAddon: [Addon(name: "Water", price: 1.00)],
@@ -85,7 +86,7 @@ class Restaurant {
       name: "Chocolate Donut",
       description:
           "Our soft and tender Chocolate Donut treats your taste buds to a roller coaster of creamy and chocolatey fun, yum!",
-      imagePath: "lib/images/burgers/chocolate-donut.png",
+      imagePath: "lib/images/desserts/chocolate-donut.png",
       price: 2.00,
       category: FoodCategory.desserts,
       availableAddon: [Addon(name: "Water", price: 1.00)],
@@ -94,7 +95,7 @@ class Restaurant {
       name: "King Fusion",
       description:
           "The BK Fusion with Oreo® combines our delicious, smooth vanilla ice cream with crunchy bits of Oreo® cookies",
-      imagePath: "lib/images/burgers/desserts_kitkat_oreo.png",
+      imagePath: "lib/images/desserts/desserts_kitkat_oreo.png",
       price: 4.00,
       category: FoodCategory.desserts,
       availableAddon: [Addon(name: "Water", price: 1.00)],
@@ -105,21 +106,21 @@ class Restaurant {
       name: "Milkshakes",
       description:
           "There's only one problem, which flavour do you choose? Vanilla? Chocolate? Strawberry? This could take some time.",
-      imagePath: "lib/images/burgers/milkshakes.png",
+      imagePath: "lib/images/drinks/milkshakes.png",
       price: 4.00,
       category: FoodCategory.drinks,
     ),
     Food(
       name: "Sodas",
       description: "Quench your thirst with a soft drink.",
-      imagePath: "lib/images/burgers/sodas.png",
+      imagePath: "lib/images/drinks/sodas.png",
       price: 1.50,
       category: FoodCategory.drinks,
     ),
     Food(
       name: "Water",
       description: "Keep refreshed with every sip.",
-      imagePath: "lib/images/burgers/water.png",
+      imagePath: "lib/images/drinks/water.png",
       price: 1.00,
       category: FoodCategory.drinks,
     ),
