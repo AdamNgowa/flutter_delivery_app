@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/components/my_button.dart';
 import 'package:food_delivery_app/model/food.dart';
+import 'package:food_delivery_app/model/restaurant.dart';
+import 'package:provider/provider.dart';
 
 class FoodPage extends StatefulWidget {
   final Food food;
-  final Map<Addon, bool> selectedAddon = {};
+  final Map<Addon, bool> selectedAddons = {};
   FoodPage({super.key, required this.food}) {
     //initalize selected addons to be false
     for (Addon addon in food.availableAddons) {
-      selectedAddon[addon] = false;
+      selectedAddons[addon] = false;
     }
   }
 
@@ -17,6 +19,21 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
+  //method to add to cart
+  void addToCart(Food food, Map<Addon, bool> selectedAddons) {
+    //close the food page to go back home
+    Navigator.pop(context);
+    //format the selected addons
+    List<Addon> currentlySelectedAddons = [];
+    for (Addon addon in widget.food.availableAddons) {
+      if (widget.selectedAddons[addon] == true) {
+        currentlySelectedAddons.add(addon);
+      }
+    }
+    //add to cart
+    context.read<Restaurant>().addToCart(food, currentlySelectedAddons);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -90,10 +107,10 @@ class _FoodPageState extends State<FoodPage> {
                             return CheckboxListTile(
                               title: Text(addon.name),
                               subtitle: Text("\$${addon.price}"),
-                              value: widget.selectedAddon[addon],
+                              value: widget.selectedAddons[addon],
                               onChanged: (bool? value) {
                                 setState(() {
-                                  widget.selectedAddon[addon] = value!;
+                                  widget.selectedAddons[addon] = value!;
                                 });
                               },
                             );
@@ -102,7 +119,11 @@ class _FoodPageState extends State<FoodPage> {
                       ),
                       SizedBox(height: 30),
                       //add to cart button
-                      MyButton(text: "Add To Cart", onTap: () {}),
+                      MyButton(
+                        text: "Add To Cart",
+                        onTap: () =>
+                            addToCart(widget.food, widget.selectedAddons),
+                      ),
                       SizedBox(height: 30),
                     ],
                   ),
