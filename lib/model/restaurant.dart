@@ -140,6 +140,7 @@ class Restaurant extends ChangeNotifier {
   */
   //user cart
   final List<CartItem> _cart = [];
+
   //add to cart
   void addToCart(Food food, List<Addon> selectedAddons) {
     //first we see if there is a cart item with the selected food items
