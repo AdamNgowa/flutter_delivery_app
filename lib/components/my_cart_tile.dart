@@ -10,39 +10,68 @@ class MyCartTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Consumer<Restaurant>(
       builder: (context, restaurant, child) => Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
+          color: theme.colorScheme.secondary,
           borderRadius: BorderRadius.circular(10),
         ),
-        margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  //food image
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      cartItem.food.imagePath,
-                      height: 100,
-                      width: 100,
-                    ),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // 🖼 Food image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    cartItem.food.imagePath,
+                    height: 80,
+                    width: 80,
+                    fit: BoxFit.cover,
                   ),
-                  //name and price
-                  Column(
+                ),
+                const SizedBox(width: 12),
+
+                // 📋 Food name & price
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(cartItem.food.name),
-                      Text("\$${cartItem.food.price.toString()}"),
+                      // Make name wrap if too long
+                      Text(
+                        cartItem.food.name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: theme.colorScheme.inversePrimary,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        "\$${cartItem.food.price.toStringAsFixed(2)}",
+                        style: TextStyle(
+                          color: theme.colorScheme.primary,
+                          fontSize: 14,
+                        ),
+                      ),
                     ],
                   ),
-                  Spacer(),
-                  //increment and decrement quantity
-                  MyQuantitySelector(
+                ),
+
+                const SizedBox(width: 8),
+
+                // 🔢 Quantity selector (fixed width to avoid overflow)
+                Flexible(
+                  flex: 0,
+                  child: MyQuantitySelector(
                     quantity: cartItem.quantity,
                     food: cartItem.food,
                     onIncrement: () {
@@ -55,58 +84,41 @@ class MyCartTile extends StatelessWidget {
                       restaurant.removeFromCart(cartItem);
                     },
                   ),
-                ],
-              ),
-              //addons
+                ),
+              ],
+            ),
+
+            // 🧩 Add-ons
+            if (cartItem.selectedAddons.isNotEmpty) ...[
+              const SizedBox(height: 10),
               SizedBox(
-                height: cartItem.selectedAddons.isEmpty ? 0 : 60,
-                child: ListView(
+                height: 40,
+                child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.only(left: 10, bottom: 10, right: 10),
-                  children: cartItem.selectedAddons
-                      .map(
-                        (addon) => Padding(
-                          padding: EdgeInsetsGeometry.only(right: 10),
-                          child: FilterChip(
-                            label: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                //addon name
-                                Text(addon.name),
-                                //addon price
-                                Text(
-                                  "\$${addon.price.toString()}",
-                                  style: TextStyle(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.primary,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            shape: StadiumBorder(
-                              side: BorderSide(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                            onSelected: (value) {},
-                            backgroundColor: Theme.of(
-                              context,
-                            ).colorScheme.secondary,
-                            labelStyle: TextStyle(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.inversePrimary,
-                              fontSize: 12,
-                            ),
-                          ),
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  separatorBuilder: (_, __) => const SizedBox(width: 8),
+                  itemCount: cartItem.selectedAddons.length,
+                  itemBuilder: (context, index) {
+                    final addon = cartItem.selectedAddons[index];
+                    return FilterChip(
+                      label: Text(
+                        "${addon.name} (\$${addon.price.toStringAsFixed(2)})",
+                        style: TextStyle(
+                          color: theme.colorScheme.inversePrimary,
+                          fontSize: 12,
                         ),
-                      )
-                      .toList(),
+                      ),
+                      shape: StadiumBorder(
+                        side: BorderSide(color: theme.colorScheme.primary),
+                      ),
+                      onSelected: (_) {},
+                      backgroundColor: theme.colorScheme.secondary,
+                    );
+                  },
                 ),
               ),
             ],
-          ),
+          ],
         ),
       ),
     );
