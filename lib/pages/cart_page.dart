@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:food_delivery_app/components/my_button.dart';
 import 'package:food_delivery_app/components/my_cart_tile.dart';
-import 'package:food_delivery_app/model/cart_item.dart';
+
 import 'package:food_delivery_app/model/restaurant.dart';
 import 'package:food_delivery_app/pages/payment_page.dart';
 import 'package:provider/provider.dart';
